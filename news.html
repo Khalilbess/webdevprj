@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library News - Ensia Lib</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 20px;
+            padding: 0 20px;
+        }
+        
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        /* Navbar styling */
+        
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+            padding: 0.625rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            height: 2.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .nav-links li {
+            margin: 0rem 3rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #064973;
+            font-weight: bold;
+            font-size: 1.25rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-links a:hover {
+            color: #f97b10;
+        }
+        
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 15px;
+        }
+        /* Mobile styling */
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+                padding: 10px;
+                background-color: #064973;
+                border: none;
+                border-radius: 5px;
+            }
+            .logo {
+                order: 2;
+            }
+            .menu-toggle {
+                order: 1;
+            }
+            .nav-icons {
+                order: 3;
+            }
+            .menu-toggle span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: white;
+                margin: 5px 0;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #064973;
+                flex-direction: column;
+                padding: 20px;
+                border-radius: 0px 0px 25px 25px;
+            }
+            #menu-toggle:checked~.nav-links {
+                display: flex;
+            }
+            .nav-links li {
+                margin: 10px 0;
+            }
+            .nav-links a {
+                color: white;
+            }
+        }
+        /* News content styling */
+        
+        .header {
+            color: #f97b10;
+            font-size: 2em;
+            margin: 100px 20px 20px;
+            text-align: center;
+        }
+        
+        .news-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+        
+        .news-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 0;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        .news-title {
+            color: #064973;
+            font-size: 1.4em;
+            margin-bottom: 5px;
+        }
+        
+        .news-description {
+            color: #555;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+        
+        .read-more {
+            text-decoration: none;
+            color: #f97b10;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        
+        .read-more:hover {
+            color: #f95a00;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#"><img src="images\photo_5843798946537915198_y.jpg" alt="Ensia Lib" class="logo"></a>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="catalog.html">Catalogue</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+        </ul>
+        <div class="nav-icons">
+            <a href="#"><img src="images\notifications.svg" alt="Icon 1"></a>
+            <a href="#"><img src="images\account.svg" alt="Icon 2"></a>
+        </div>
+    </nav>
+
+    <!-- News content -->
+    <h1 class="header">Library News</h1>
+
+    <div class="news-container">
+        <div class="news-item">
+            <h2 class="news-title">New Books Added to Our Collection!</h2>
+            <p class="news-description">We're excited to announce that we've added over 200 new titles, ranging from science fiction to self-help, in response to popular demand.</p>
+            <a href="new_books.html" class="read-more">Read More</a>
+        </div>
+
+        <div class="news-item">
+            <h2 class="news-title">Library Renovations Complete</h2>
+            <p class="news-description">We’ve completed our recent renovations to create a more welcoming space with improved reading areas, study rooms, and enhanced Wi-Fi.</p>
+            <a href="renovations.html" class="read-more">Read More</a>
+        </div>
+
+        <div class="news-item">
+            <h2 class="news-title">Upcoming Event: Author Talk with Jane Doe</h2>
+            <p class="news-description">Join us on November 15th as we welcome best-selling author Jane Doe for an in-person discussion on her latest book and the writing process.</p>
+            <a href="author_talk.html" class="read-more">Read More</a>
+        </div>
+
+        <div class="news-item">
+            <h2 class="news-title">AI-Powered Book Recommendations</h2>
+            <p class="news-description">Our library is excited to introduce AI-powered book recommendations! Based on your reading history, the system will suggest titles you’re likely to enjoy.</p>
+            <a href="ai_recommandations.html" class="read-more">Read More</a>
+        </div>
+
+        <div class="news-item">
+            <h2 class="news-title">New Digital Resources Available</h2>
+            <p class="news-description">Our digital library is expanding! Access new e-books, audiobooks, and research journals through our online catalog.</p>
+            <a href="digital_resources.html" class="read-more">Read More</a>
+        </div>
+
+        <div class="news-item">
+            <h2 class="news-title">AI Chatbot for Customer Support</h2>
+            <p class="news-description">Introducing our new AI chatbot, available 24/7! Get instant answers to your questions about library services, events, and more right from our website.</p>
+            <a href="ai_chatbot.html" class="read-more">Read More</a>
+        </div>
+
+        <div class="news-item">
+            <h2 class="news-title">Volunteer Opportunities at Ensia Lib</h2>
+            <p class="news-description">We’re looking for volunteers to assist with our events, children’s programs, and daily operations. Sign up and be part of our team!</p>
+            <a href="volunteer_opportunities.html" class="read-more">Read More</a>
+        </div>
+        <!-- Add more news items as needed -->
+    </div>
+
+</body>
+
+</html>

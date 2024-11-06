@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensia Lib - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #064973;
+            position: relative;
+            color: white;
+        }
+        
+        .quote {
+            position: absolute;
+            top: 20px;
+            text-align: center;
+            color: #f97b10;
+            font-size: 24px;
+            width: 100%;
+            animation: moveQuote 10s linear infinite;
+        }
+        
+        @keyframes moveQuote {
+            0% {
+                transform: translateX(-100%);
+            }
+            50% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        .diaporama {
+            position: absolute;
+            top: 70px;
+            text-align: center;
+            color: white;
+        }
+        
+        .diaporama span {
+            display: none;
+            font-size: 32px;
+        }
+        
+        @keyframes showWords {
+            0% {
+                display: none;
+            }
+            5% {
+                display: inline;
+            }
+            15% {
+                display: inline;
+            }
+            20% {
+                display: none;
+            }
+        }
+        
+        .diaporama span:nth-child(1) {
+            animation: showWords 5s forwards;
+        }
+        
+        .diaporama span:nth-child(2) {
+            animation: showWords 5s 5s forwards;
+        }
+        
+        .diaporama span:nth-child(3) {
+            animation: showWords 5s 10s forwards;
+        }
+        
+        .diaporama span:nth-child(4) {
+            animation: showWords 5s 15s forwards;
+        }
+        
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            padding: 50px;
+            width: 100%;
+            max-width: 500px;
+            /* Increased max width for the container */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 130px;
+        }
+        
+        .login-header h1 {
+            color: #064973;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .login-header p {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        .login-form form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            width: 200%;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        label {
+            font-size: 16px;
+            color: #064973;
+            margin-bottom: 8px;
+            text-align: left;
+            width: 100%;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus {
+            border-color: #064973;
+            outline: none;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #f97b10;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            /* More circular button */
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #f95a00;
+            transform: translateY(-2px);
+        }
+        
+        .forgot-password {
+            margin-top: 15px;
+        }
+        
+        .forgot-password a {
+            color: #064973;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 600px) {
+            .login-container {
+                padding: 30px;
+            }
+            .login-header h1 {
+                font-size: 24px;
+            }
+            .login-header p {
+                font-size: 14px;
+            }
+            .quote {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quote">
+        “Never trust anyone who has not brought a book with them.” - Lemony Snicket
+    </div>
+
+    <div class="diaporama">
+        <span>Welcome</span>
+        <span>to</span>
+        <span>our</span>
+        <span>world!</span>
+    </div>
+
+    <div class="login-container">
+        <div class="login-header">
+            <h1>WELCOME TO ENSIA LIBRARY</h1>
+            <p>Access your library account below</p>
+        </div>
+        <div class="login-form">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn">Sign In</button>
+                <div class="forgot-password">
+                    <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

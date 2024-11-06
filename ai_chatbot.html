@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot - Ensia Lib</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #064973;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            margin-top: 70px;
+        }
+        
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 20px;
+            padding: 0 20px;
+        }
+        /* Navbar Styles */
+        
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+            padding: 0.625rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            height: 2.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .nav-links li {
+            margin: 0rem 3rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #064973;
+            font-weight: bold;
+            font-size: 1.25rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-links a:hover {
+            color: #f97b10;
+        }
+        
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 15px;
+        }
+        
+        .nav-icons img {
+            width: 2rem;
+            height: 2rem;
+            margin: 0rem 1rem;
+            transition: filter 0.3s ease;
+        }
+        
+        .nav-icons a:hover .icon-hover {
+            filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(346deg) brightness(100%) contrast(119%);
+        }
+        /* Mobile Navigation */
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+                padding: 10px;
+                background-color: #064973;
+                border: none;
+                border-radius: 5px;
+            }
+            .logo {
+                order: 2;
+            }
+            .menu-toggle {
+                order: 1;
+            }
+            .nav-icons {
+                order: 3;
+            }
+            .menu-toggle span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: white;
+                margin: 5px 0;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #064973;
+                flex-direction: column;
+                padding: 20px;
+                border-radius: 0px 0px 25px 25px;
+            }
+            #menu-toggle:checked~.nav-links {
+                display: flex;
+            }
+            .nav-links li {
+                margin: 10px 0;
+            }
+            .nav-links a {
+                color: white;
+            }
+        }
+        /* Page Content */
+        
+        .header {
+            color: #f97b10;
+            font-size: 2em;
+            margin: 20px;
+            text-align: center;
+        }
+        
+        .content {
+            max-width: 800px;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .chat-container {
+            margin-top: 20px;
+            text-align: left;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #f97b10;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            color: #f95a00;
+        }
+        
+        .input-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .input-container input {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .input-container button {
+            padding: 10px 15px;
+            background-color: #064973;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        
+        .input-container button:hover {
+            background-color: #f97b10;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <img src="images/photo_5843798946537915198_y.jpg" alt="ENSIA Logo" class="logo" />
+
+        <label for="menu-toggle" class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <ul class="nav-links">
+            <li><a href="#">News</a></li>
+            <li><a href="catalog.html">Catalog</a></li>
+            <li><a href="#">My history</a></li>
+            <li><a href="#">FAQ</a></li>
+        </ul>
+        <div class="nav-icons">
+            <a href="#"><img src="images/notifications.svg" alt="Notification Bell" class="icon-hover" /></a>
+            <a href="#"><img src="images/account.svg" alt="Profile Picture" class="icon-hover" /></a>
+        </div>
+    </nav>
+    <main class="container">
+
+        <h1 class="header">AI Chatbot</h1>
+        <div class="content">
+            <p>Chat with our AI chatbot for quick answers to your queries or assistance with your library needs.</p>
+            <div class="chat-container" id="chat-container">
+                <!-- Chat messages will appear here -->
+            </div>
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="Type your message..." />
+                <button id="send-button">Send</button>
+            </div>
+            <a href="news.html" class="back-link">Back to News</a>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('send-button').addEventListener('click', function() {
+            const inputField = document.getElementById('user-input');
+            const userInput = inputField.value;
+
+            if (userInput.trim() === "") return;
+
+            // Display user message
+            const chatContainer = document.getElementById('chat-container');
+            chatContainer.innerHTML += `<div><strong>You:</strong> ${userInput}</div>`;
+            inputField.value = '';
+
+            // Simulate AI response
+            setTimeout(() => {
+                const botResponse = getAIResponse(userInput);
+                chatContainer.innerHTML += `<div><strong>Bot:</strong> ${botResponse}</div>`;
+                chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to bottom
+            }, 500);
+        });
+
+        function getAIResponse(userInput) {
+            // Placeholder for AI logic
+            // You can integrate your chatbot API or logic here
+            return "This is a simulated response. (You can integrate real AI here!)";
+        }
+    </script>
+</body>
+
+</html>

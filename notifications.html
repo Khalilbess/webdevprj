@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Ensia Lib</title>
+    <style>
+        /* Global Styles */
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        /* Navbar Styles */
+        
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+            padding: 0.625rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            height: 2.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .nav-links li {
+            margin: 0rem 3rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #064973;
+            font-weight: bold;
+            font-size: 1.25rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-links a:hover {
+            color: #f97b10;
+        }
+        
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 15px;
+        }
+        
+        .nav-icons img {
+            width: 2rem;
+            height: 2rem;
+            margin: 0rem 1rem;
+            transition: filter 0.3s ease;
+        }
+        
+        .nav-icons a:hover .icon-hover {
+            filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(346deg) brightness(100%) contrast(119%);
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+                padding: 10px;
+                background-color: #064973;
+                border: none;
+                border-radius: 5px;
+            }
+            .logo {
+                order: 2;
+            }
+            .menu-toggle {
+                order: 1;
+            }
+            .nav-icons {
+                order: 3;
+            }
+            .menu-toggle span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: white;
+                margin: 5px 0;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #064973;
+                flex-direction: column;
+                padding: 20px;
+                border-radius: 0px 0px 25px 25px;
+            }
+            #menu-toggle:checked~.nav-links {
+                display: flex;
+            }
+            .nav-links li {
+                margin: 10px 0;
+            }
+            .nav-links a {
+                color: white;
+            }
+        }
+        /* Notification Popup Styles */
+        
+        .notification-popup {
+            width: 90%;
+            max-width: 400px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            animation: slideDown 0.5s ease-out;
+            margin-top: 100px;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .popup-header {
+            background-color: #064973;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.2em;
+        }
+        
+        .popup-content {
+            padding: 20px;
+        }
+        
+        .notification-item {
+            background-color: #f7f7f7;
+            border-left: 4px solid #f97b10;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .notification-text {
+            color: #333;
+        }
+        
+        .clear-btn {
+            background-color: #f97b10;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 0.9em;
+        }
+        
+        .clear-btn:hover {
+            background-color: #f95a00;
+        }
+        
+        .popup-footer {
+            background-color: #eaeaea;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .manage-link,
+        .close-link {
+            font-size: 0.9em;
+            color: #064973;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        
+        .manage-link:hover,
+        .close-link:hover {
+            color: #f97b10;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <img src="../assets/ensia_lib.png" alt="ENSIA Logo" class="logo" />
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <ul class="nav-links">
+            <li><a href="#">News</a></li>
+            <li><a href="catalog.html">Catalog</a></li>
+            <li><a href="#">My history</a></li>
+            <li><a href="#">FAQ</a></li>
+        </ul>
+        <div class="nav-icons">
+            <a href="#"><img src="../assets/notifications.svg" alt="Notification Bell" class="icon-hover" /></a>
+            <a href="#"><img src="../assets/account.svg" alt="Profile Picture" class="icon-hover" /></a>
+        </div>
+    </nav>
+
+    <!-- Notification Popup -->
+    <div class="notification-popup">
+        <div class="popup-header">Notifications</div>
+        <div class="popup-content">
+            <div class="notification-item">
+                <span class="notification-text">📢 Overdue: Return "The Great Gatsby" by Oct 31</span>
+                <button class="clear-btn" onclick="clearNotification(this)">Clear</button>
+            </div>
+            <div class="notification-item">
+                <span class="notification-text">📚 New Arrival: "AI and the Future of Humanity"</span>
+                <button class="clear-btn" onclick="clearNotification(this)">Clear</button>
+            </div>
+            <div class="notification-item">
+                <span class="notification-text">📢 Overdue: Return "1984" by Nov 5</span>
+                <button class="clear-btn" onclick="clearNotification(this)">Clear</button>
+            </div>
+        </div>
+        <div class="popup-footer">
+            <a href="#" class="manage-link">Manage Notifications</a>
+            <a href="#" class="close-link" onclick="closePopup()">Close</a>
+        </div>
+    </div>
+
+    <script>
+        function clearNotification(button) {
+            const notificationItem = button.parentElement;
+            notificationItem.style.opacity = '0';
+            setTimeout(() => {
+                notificationItem.style.display = 'none';
+            }, 300);
+        }
+
+        function closePopup() {
+            const popup = document.querySelector('.notification-popup');
+            popup.style.opacity = '0';
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 300);
+        }
+    </script>
+</body>
+
+</html>
